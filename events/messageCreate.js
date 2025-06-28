@@ -1,5 +1,5 @@
 const { OpenAI } = require('openai');
-const { openai_key } = require('./config.json');
+const { openai_key } = require('../config.json');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -31,13 +31,13 @@ module.exports = {
 
         let systemMessage = chats + "\n\n" + description;
 
-        // If history.txt is more than 5 minutes old, log it
+        // If history.txt is more than 30 minutes old, log it
         const historyFilePath = path.join(__dirname, 'history.txt');
         if (fs.existsSync(historyFilePath)) {
             const stats = fs.statSync(historyFilePath);
             const fileAge = Date.now() - stats.mtimeMs;
 
-            // If the file is older than 30 minutes (1800000 milliseconds), delete it
+            // Check if the file is older than 30 minutes (1800000 milliseconds)
             if (fileAge > 1800000) {
                 // append history.txt to historylog.txt
                 const historyLogPath = path.join(__dirname, 'historylog.txt');

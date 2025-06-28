@@ -6,3 +6,5 @@ events/prompts/
 events/friends.json
 events/config.json
 events/history.txt
+
+deploy-commands.js
