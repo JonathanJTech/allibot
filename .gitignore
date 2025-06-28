@@ -4,3 +4,5 @@ package-lock.json
 
 events/prompts/
 events/friends.json
+events/config.json
+events/history.txt

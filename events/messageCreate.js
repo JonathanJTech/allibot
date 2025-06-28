@@ -31,6 +31,33 @@ module.exports = {
 
         let systemMessage = chats + "\n\n" + description;
 
+        // If history.txt is more than 5 minutes old, log it
+        const historyFilePath = path.join(__dirname, 'history.txt');
+        if (fs.existsSync(historyFilePath)) {
+            const stats = fs.statSync(historyFilePath);
+            const fileAge = Date.now() - stats.mtimeMs;
+
+            // If the file is older than 30 minutes (1800000 milliseconds), delete it
+            if (fileAge > 1800000) {
+                // append history.txt to historylog.txt
+                const historyLogPath = path.join(__dirname, 'historylog.txt');
+                if (fs.existsSync(historyLogPath)) {
+                    const oldHistory = fs.readFileSync(historyFilePath, 'utf8');
+                    const now = new Date()
+                    fs.appendFileSync(historyLogPath, "Logging history at " + now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' , hour12: false}) + oldHistory + "\n\n");
+                } else {
+                    fs.writeFileSync(historyLogPath, fs.readFileSync(historyFilePath, 'utf8') + "\n\n");
+                }
+                fs.unlinkSync(historyFilePath);
+                fs.writeFileSync(path.join(__dirname, 'history.txt'), '');
+            }
+        } else {
+            fs.writeFileSync(path.join(__dirname, 'history.txt'), '');
+        }
+
+        // Read the history from the file
+        history = fs.readFileSync(path.join(__dirname, 'history.txt'), 'utf8');
+
         if (history) {
             systemMessage += "\n\n" + "Here is the conversation so far. If there is anything worth incorporating into your response, you should incorporate it:" + "\n" + history;
         }
@@ -49,7 +76,12 @@ module.exports = {
             ],
         });
 
-        history += "\n" + friend + ": " + message.content + "\n" + "Allibot: " + response.output[0].content[0].text;
+        history += "\n" + friend + ": " + message.content + "\n";
+        history += "Allibot: " + response.output[0].content[0].text;
+
+        // Write the updated history back to the file
+        fs.writeFileSync(path.join(__dirname, 'history.txt'), history);
+
         console.log(history);
         console.log();
 
