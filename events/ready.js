@@ -1,7 +1,9 @@
+const logger = require ('../logger.js');
+
 module.exports = {
     name: "ready",
     once: true,
     execute(client) {
-        console.log("Allibot online!");
+        logger.log("Allibot online!");
     }
 }

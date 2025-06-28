@@ -8,3 +8,7 @@ events/config.json
 events/history.txt
 
 deploy-commands.js
+
+log.txt
+warn.txt
+error.txt

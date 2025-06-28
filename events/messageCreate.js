@@ -8,6 +8,8 @@ const chats = fs.readFileSync(path.join(__dirname, "prompts", 'Allionna-Chats'),
 
 const friends = JSON.parse(fs.readFileSync(path.join(__dirname, 'friends.json'), 'utf8'));
 
+const logger = require('../logger.js');
+
 let history = "";
 
 module.exports = {
@@ -82,8 +84,7 @@ module.exports = {
         // Write the updated history back to the file
         fs.writeFileSync(path.join(__dirname, "..", 'history.txt'), history);
 
-        console.log(history);
-        console.log();
+        logger.log(history);
 
         message.reply({
             content: response.output[0].content[0].text,
