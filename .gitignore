@@ -3,9 +3,10 @@ node_modules/
 package-lock.json
 
 events/prompts/
-events/friends.json
 events/config.json
 events/history.txt
+
+data/friends.json
 
 deploy-commands.js
 
