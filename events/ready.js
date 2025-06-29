@@ -4,6 +4,6 @@ module.exports = {
     name: "ready",
     once: true,
     execute(client) {
-        logger.log("Allibot online!");
+        logger.info("Allibot online!");
     }
 }
