@@ -9,10 +9,10 @@ const openai = new OpenAI({
     apiKey: openai_key
 });
 
-const promptsPath = path.join(__dirname, "..", "events", "prompts");
+const promptsPath = path.join(__dirname, "..", "events", "allibot-prompts");
 
 const getRelevantFriendsArray = async (message, sender) => {
-    const friendsList = fs.readFileSync(path.join(__dirname, "..", "events", "prompts", 'Friends-List'), 'utf8');
+    const friendsList = fs.readFileSync(path.join(promptsPath, 'Friends-List'), 'utf8');
 
     const response = await openai.responses.create({
         model: "gpt-4.1-mini-2025-04-14",
