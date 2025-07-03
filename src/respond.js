@@ -64,7 +64,11 @@ const sendResponse = async (message) => {
     const allowedSenders = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", 'friends.json'), 'utf8'));
 
     logger.info("Received message from " + message.author.username);
-    if (!allowedSenders[message.author.username]) return;
+    if (!allowedSenders[message.author.username]) {
+        logger.info("Message from " + message.author.username + " is not allowed. Ignoring.");
+        message.reply({ content: "You are not registered with Allibot. Please register using the /register command." });
+        return;
+    };
     const sender = allowedSenders[message.author.username];
 
     let systemMessage = await buildSystemMessage(message, sender);
