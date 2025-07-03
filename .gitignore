@@ -8,8 +8,6 @@ history.txt
 
 data/friends.json
 
-deploy-commands.js
-
 log.txt
 warn.txt
 error.txt
