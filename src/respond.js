@@ -133,10 +133,8 @@ const sendResponse = async (message) => {
     logger.info("Replied to " + message.author.username);
 
     // [DEBUG] write systemMessage to systemMessage.txt
-    if (env === "development") {
-        const systemMessagePath = path.join(__dirname, "..", 'systemMessage.txt');
-        fs.writeFileSync(systemMessagePath, systemMessage);
-    }
+    const systemMessagePath = path.join(__dirname, "..", 'systemMessage.txt');
+    fs.writeFileSync(systemMessagePath, systemMessage);
 }
 
 const respond = {
