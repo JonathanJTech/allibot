@@ -13,7 +13,11 @@ module.exports = {
         }
 
         try {
-            await command.execute(interaction);
+            if (interaction.channel.name !== "allibot"){
+                await interaction.reply("This command can only be used in the #allibot channel.");
+            } else {
+                await command.execute(interaction);
+            }
         } catch (error) {
             logger.error(error);
             if (interaction.replied || interaction.deferred) {
