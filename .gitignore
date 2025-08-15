@@ -2,7 +2,7 @@ config.json
 node_modules/
 package-lock.json
 
-events/allibot-prompts/
+allibot-prompts/
 events/config.json
 history.txt
 

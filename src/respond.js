@@ -10,7 +10,7 @@ const openai = new OpenAI({
     apiKey: openai_key
 });
 
-const promptsPath = path.join(__dirname, "..", "events", "allibot-prompts");
+const promptsPath = path.join(__dirname, "..", "allibot-prompts");
 
 const getRelevantFriendsArray = async (message, sender) => {
     const friendsList = fs.readFileSync(path.join(promptsPath, 'Friends-List'), 'utf8');
