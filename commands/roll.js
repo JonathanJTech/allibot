@@ -11,12 +11,8 @@ module.exports = {
                 .setDescription('The maximum number to roll (default is 100)')
                 .setRequired(false)),
 	async execute(interaction) {
-		if (interaction.user.id == ownerId){
-            const max = interaction.options.getInteger('max') || 100;
-            const random = Math.floor(Math.random() * max) + 1;
-			await interaction.reply("Rolling a " + max + "-sided dice, and rolled a " + random + "!");
-		} else {
-			await interaction.reply('You do not have permission to use this command!');
-		}
+        const max = interaction.options.getInteger('max') || 100;
+        const random = Math.floor(Math.random() * max) + 1;
+        await interaction.reply("Rolling a " + max + "-sided dice, and rolled a " + random + "!");
 	},
 };
