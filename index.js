@@ -1,11 +1,19 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, Partials } = require('discord.js');
 const { token } = require('./config.json');
 const logger = require('./logger.js');
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+const client = new Client({
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.DirectMessages,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent
+	],
+	partials: [Partials.Channel, Partials.Message]
+});
 
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));

@@ -1,0 +1,15 @@
+<Invite guildies online>
+<Start Allibot's game function, which starts a 1 minute countdown>
+<Send some funny disaster message as Allionna>
+<Log in as Allibot>
+<Arrive around the same time as end of 1 minute countdown, triggering Allibot's message>
+
+Guildies! Allionna said she will be late, and that we should get started without her!
+
+
+
+Gameloop:
+- Check the current location
+- Get the possible decision from the current location
+- Check the decision
+- Do something depending on the decision
