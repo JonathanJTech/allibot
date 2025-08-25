@@ -5,7 +5,7 @@ const { startTimer } = require('../src/timer');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('timer')
-        .setDescription('Create a timer that will send a message after a specified number of minutes. Use /stoptimers to stop all your timers.')
+        .setDescription('Create timer that sends a message after somme number of minutes. /stoptimers to stop all your timers')
         .addIntegerOption(option =>
             option.setName('minutes')
                 .setDescription('The number of minutes to wait before sending the message')
