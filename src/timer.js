@@ -9,7 +9,13 @@ async function startTimer(interaction, minutes, message, repeating){
     await interaction.reply(`Timer set for ${minutes} minute(s). I will send the message: "${message}"${repeating ? ' repeatedly' : ''}.`);
 
     const sendMessage = async () => {
-        await interaction.followUp(message);
+        //Send a DM to the user
+        try {
+            await interaction.user.send(message);
+        } catch (error) {
+            console.error('Error sending DM:', error);
+            await interaction.followUp('I was unable to send you a DM. Please check your privacy settings.');
+        }
     };
 
     if (repeating) {
