@@ -8,7 +8,7 @@ module.exports = {
 
         // Ignore messages that are not in the "allibot" channel or do not mention "allibot"
         if (message.channel.name !== "allibot") return;
-        if (!message.content.toLowerCase().includes("allibot")) return;
+        if (!message.content.toLowerCase().includes("allibot") && !message.content.toLowerCase().includes("アリボット")) return;
 
         respond.sendResponse(message);
     }
